@@ -316,6 +316,10 @@ void spi_send_data_standard_dma(dmac_channel_number_t channel_num, spi_device_nu
                                 spi_chip_select_t chip_select,
                                 const uint8_t *cmd_buff, size_t cmd_len, const uint8_t *tx_buff, size_t tx_len);
 
+
+void spi_send_data_normal(spi_device_num_t spi_num, spi_chip_select_t chip_select, const uint8_t* tx_buff,
+                          size_t tx_len);
+
 /**
  * @brief       Spi receive data by dma
  *
@@ -393,6 +397,7 @@ void spi_receive_data_multiple_dma(dmac_channel_number_t dma_send_channel_num,
 void spi_fill_data_dma(dmac_channel_number_t channel_num, spi_device_num_t spi_num, spi_chip_select_t chip_select,
                        const uint32_t *tx_buff, size_t tx_len);
 
+
 /**
  * @brief       Spi normal send by dma
  *
@@ -453,6 +458,8 @@ void spi_dup_send_receive_data_dma(dmac_channel_number_t dma_send_channel_num,
  * @return      Void
  */
 void spi_slave_config(uint8_t int_pin, uint8_t ready_pin, dmac_channel_number_t dmac_channel, size_t data_bit_length, uint8_t *data, uint32_t len, spi_slave_receive_callback_t callback);
+
+void spiWaitPrevDmaDone();
 
 #ifdef __cplusplus
 }

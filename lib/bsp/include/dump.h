@@ -128,6 +128,11 @@ dump_core(const char *reason, uintptr_t cause, uintptr_t epc, uintptr_t regs[32]
                 i * 2, regf_usage[i * 2][0], fregs[i * 2], (float)fregs[i * 2],
                 i * 2 + 1, regf_usage[i * 2 + 1][0], fregs[i * 2 + 1], (float)fregs[i * 2 + 1]);
         }
+
+        for (i = 0; i < 32; i++) {
+            uint32_t* ptr = (uint32_t*)(regs[2] - i * 4);
+            DUMP_PRINTF("%p=%08x\r\n", ptr, *ptr);
+        }
     }
 }
 
